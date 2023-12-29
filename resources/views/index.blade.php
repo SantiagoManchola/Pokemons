@@ -36,9 +36,14 @@
                         <span class="badge bg-warning fs-6">{{$pokemon->status}}</span>
                     </td>
                     <td>
-                        <a href="" class="btn btn-warning">Editar</a>
+                        <form action="{{route('pokemons.edit', $pokemon)}}" method="GET">
+                            @csrf
+                            <button type="submit" class="btn btn-warning">Editar</button>
+                        </form>
 
-                        <form action="" method="post" class="d-inline">
+                        <form action="{{route('pokemons.destroy', $pokemon)}}" method="POST" class="d-inline">
+                            @csrf
+                            @method('DELETE')
                             <button type="submit" class="btn btn-danger">Eliminar</button>
                         </form>
                     </td>

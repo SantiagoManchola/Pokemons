@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pokemon;
-use Illuminate\Contracts\View\View as ViewView;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
@@ -54,15 +53,21 @@ class PokemonsController extends Controller
      */
     public function edit(Pokemon $pokemon): View
     {
-        //
+        return view('edit',['pokemon'=> $pokemon]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Pokemon $pokemon)
+    public function update(Request $request, Pokemon $pokemon): RedirectResponse
     {
-        //
+        $request->validate([
+            'nombre'=> 'required',
+            'tipo'=> 'required',
+        ]);
+
+        $pokemon->update($request->all());
+        return redirect()->route('pokemons.index')->with('success', 'Pokemon editado exitosamente');
     }
 
     /**
@@ -70,6 +75,7 @@ class PokemonsController extends Controller
      */
     public function destroy(Pokemon $pokemon)
     {
-        //
+        $pokemon->delete();
+        return redirect()->route('pokemons.index')->with('success', 'Pokemon eliminado exitosamente');
     }
 }
