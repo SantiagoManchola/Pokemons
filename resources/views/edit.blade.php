@@ -44,7 +44,7 @@
                     <select name="status" class="form-select" id="">
                         <option value="">-- Elige el status --</option>
                         <option value="Favorito" @selected("Favorito" == $pokemon->status)>Favorito</option>
-                        <option value="No favorito" @selected("No Favorito" == $pokemon->status)>No Favorito</option>
+                        <option value="No Favorito" @selected("No Favorito" == $pokemon->status)>No Favorito</option>
                     </select>
                 </div>
             </div>

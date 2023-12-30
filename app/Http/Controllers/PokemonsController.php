@@ -38,7 +38,7 @@ class PokemonsController extends Controller
         ]);
 
         Pokemon::create($request->all());
-        return redirect()->route('pokemons.index')->with('success', 'Nueva tarea creada exitosamente');
+        return redirect()->route('pokemons.index')->with('success', 'Pokemon agregado exitosamente');
     }
 
     /**

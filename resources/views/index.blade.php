@@ -4,7 +4,10 @@
 <div class="row">
     <div class="col-12">
         <div>
-            <h2 class="text-white">POKEMONS</h2>
+            <h1>Usuario: @auth {{Auth::user()->name}} @endauth</h1>
+        </div>
+        <div>
+            <h1 class="text-white">Pokemons</h1>
         </div>
         <div>
             <a href="{{route('pokemons.create')}}" class="btn btn-primary">Añadir Pokemon</a>
@@ -52,5 +55,12 @@
         </table>
         {{$pokemons->links()}}
     </div>
+    <footer>
+        <a href="{{route('logout')}}">
+            <button type="button" class="btn btn-outline-primary me-2"> 
+                Cerrar Sesion
+            </button>
+        </a>
+    </footer>
 </div>
 @endsection

@@ -42,8 +42,8 @@
                     <strong>Estado (inicial):</strong>
                     <select name="status" class="form-select" id="">
                         <option value="">-- Elige el status --</option>
+                        <option value="No Favorito">No Favorito</option>
                         <option value="Favorito">Favorito</option>
-                        <option value="No favorito">No Favorito</option>
                     </select>
                 </div>
             </div>

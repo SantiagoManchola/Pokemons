@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('pokemons', PokemonsController::class);
+Route::resource('pokemons', PokemonsController::class)->middleware('auth');
 
 Route::view('/login', "login")->name('login');
 Route::view('/registro', "register")->name('registro');
