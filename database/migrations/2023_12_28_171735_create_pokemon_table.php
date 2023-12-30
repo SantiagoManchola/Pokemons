@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('tipo');
-            $table->enum('status', ['Favorito', 'No Favorito']);
+            $table->enum('favorito', ['SI', 'NO'])->nullable();
             $table->timestamps();
         });
     }

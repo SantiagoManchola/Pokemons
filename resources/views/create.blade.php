@@ -39,11 +39,10 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 mt-2">
                 <div class="form-group">
-                    <strong>Estado (inicial):</strong>
-                    <select name="status" class="form-select" id="">
-                        <option value="">-- Elige el status --</option>
-                        <option value="No Favorito">No Favorito</option>
-                        <option value="Favorito">Favorito</option>
+                    <strong>Favorito: </strong>
+                    <select name="favorito" class="form-select" id="">
+                        <option value="NO">NO</option>
+                        <option value="SI">SI</option>
                     </select>
                 </div>
             </div>

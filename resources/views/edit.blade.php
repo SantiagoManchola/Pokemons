@@ -41,10 +41,9 @@
             <div class="col-xs-12 col-sm-12 col-md-6 mt-2">
                 <div class="form-group">
                     <strong>Estado (inicial):</strong>
-                    <select name="status" class="form-select" id="">
-                        <option value="">-- Elige el status --</option>
-                        <option value="Favorito" @selected("Favorito" == $pokemon->status)>Favorito</option>
-                        <option value="No Favorito" @selected("No Favorito" == $pokemon->status)>No Favorito</option>
+                    <select name="favorito" class="form-select" id="">
+                        <option value="SI" @selected("SI" == $pokemon->favorito)>SI</option>
+                        <option value="NO" @selected("NO" == $pokemon->favorito)>NO</option>
                     </select>
                 </div>
             </div>

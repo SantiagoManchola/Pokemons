@@ -25,7 +25,7 @@
             <tr class="text-secondary">
                 <th>Pokemon</th>
                 <th>Tipo</th>
-                <th>Estado</th>
+                <th>Favorito</th>
                 <th>Acciones</th>
             </tr>
 
@@ -36,7 +36,7 @@
                         {{$pokemon->tipo}}
                     </td>
                     <td>
-                        <span class="badge bg-warning fs-6">{{$pokemon->status}}</span>
+                        <span class="badge bg-warning fs-6">{{$pokemon->favorito}}</span>
                     </td>
                     <td>
                         <form action="{{route('pokemons.edit', $pokemon)}}" method="GET">
