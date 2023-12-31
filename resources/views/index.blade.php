@@ -49,11 +49,18 @@
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Eliminar</button>
                         </form>
+
+                        <form action="{{route('pokemones.store')}}" method="POST">
+                            @csrf
+                            <input type="text" name="id_pokemon" value="{{$pokemon->id}}" hidden>
+                            <input type="text" name="email" value="{{Auth::user()->email}}" hidden>
+                            <button type="submit" class="btn btn-warning">Agregar a Favoritos</button>
+                        </form>
                     </td>
                 </tr> 
             @endforeach
         </table>
-        {{$pokemons->links()}}
+       {{--  {{$pokemons->links()}} --}}
     </div>
     <footer>
         <a href="{{route('logout')}}">

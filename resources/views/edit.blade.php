@@ -39,13 +39,13 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 mt-2">
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <strong>Estado (inicial):</strong>
                     <select name="favorito" class="form-select" id="">
                         <option value="SI" @selected("SI" == $pokemon->favorito)>SI</option>
                         <option value="NO" @selected("NO" == $pokemon->favorito)>NO</option>
                     </select>
-                </div>
+                </div> --}}
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center mt-2">
                 <button type="submit" class="btn btn-primary">Actualizar</button>

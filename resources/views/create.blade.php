@@ -38,13 +38,13 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 mt-2">
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <strong>Favorito: </strong>
                     <select name="favorito" class="form-select" id="">
                         <option value="NO">NO</option>
                         <option value="SI">SI</option>
                     </select>
-                </div>
+                </div> --}}
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center mt-2">
                 <button type="submit" class="btn btn-primary">Crear</button>
