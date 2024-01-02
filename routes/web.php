@@ -25,10 +25,14 @@ Route::resource('pokemons', PokemonsController::class)->middleware('auth');
 Route::view('/login', "login")->name('login');
 Route::view('/registro', "register")->name('registro');
 Route::get('/pokemons', [PokemonsController::class, 'index'])->middleware('auth')->name('pokemons.index');
+Route::get('/pokemones-favoritos', [FavoritoController::class, 'index'])->name('favoritos.index');
+Route::view('/pokemones', "register")->name('registro');
+
 
 
 Route::post('/validar-registro', [LoginController::class, 'register'])->name('validar-registro');
 Route::post('/inicia-sesion', [LoginController::class, 'login'])->name('inicia-sesion');
 Route::get('/logout', [LoginController::class, 'logout']) ->name('logout');
 
-Route::resource('/pokemones', FavoritoController::class);
+Route::post('/eliminar-favorito', [FavoritoController::class, 'destroy'])->name('pokemones.destroy');
+Route::post('/pokemones-store', [FavoritoController::class, 'store'])->name('pokemones.store');

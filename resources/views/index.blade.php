@@ -60,7 +60,7 @@
                 </tr> 
             @endforeach
         </table>
-       {{--  {{$pokemons->links()}} --}}
+        {{$pokemons->links()}}
     </div>
     <footer>
         <a href="{{route('logout')}}">

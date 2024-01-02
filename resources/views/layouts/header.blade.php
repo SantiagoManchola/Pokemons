@@ -15,7 +15,7 @@
         <nav>
            <ul class="nav-links">
                 <li><a href="{{route('pokemons.index')}}">Pokemones</a></li>
-                <li><a href="{{route('pokemones.index')}}">Mis favoritos</a></li>
+                <li><a href="{{route('favoritos.index')}}">Mis favoritos</a></li>
            </ul>            
         </nav>
     </header>

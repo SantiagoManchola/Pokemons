@@ -6,6 +6,8 @@ use App\Models\Favorito;
 use Illuminate\Http\Request;
 use App\Models\Pokemon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\QueryException;
+
 
 class FavoritoController extends Controller
 {
@@ -15,8 +17,10 @@ class FavoritoController extends Controller
     public function index()
     {
         $email = Auth::user()->email;
-        $pokemons = Favorito::where('email','=',$email)->get();
-        return view('index', ['pokemons' => $pokemons]);
+        /* $favoritos = Favorito::where('email','=',$email)->get(); */
+        $id_pokemon= Favorito::select('id_pokemon')->where('email','=',$email)->distinct()->get()->pluck('id_pokemon')->toArray();
+        $pokemones = Pokemon::whereIn('id', $id_pokemon)->get();
+        return view('favoritos', ['pokemones' => $pokemones]);
     }
 
     /**
@@ -32,12 +36,23 @@ class FavoritoController extends Controller
      */
     public function store(Request $request)
     {
-        $favorito = new Favorito();
-        $favorito->id_pokemon = $request->id_pokemon;
-        $favorito->email = $request->email;
-        $favorito->save();
-        return redirect()->back();
+            $favorito = Favorito::where('email', $request->email)
+            ->where('id_pokemon', $request->id_pokemon)
+            ->first();
+            if($favorito == null)
+            {
+                $favorito = new Favorito();
+                $favorito->id_pokemon = $request->id_pokemon;
+                $favorito->email = $request->email;
+                $favorito->save();
+                return redirect() -> route('favoritos.index')->with('success', 'Agregado exitosamente');
+            }
+            else
+            {
+                return redirect()->route('pokemons.index')->with('success', 'Ya se encuenta agregado en la lista de favoritos');
+            }
     }
+        
 
     /**
      * Display the specified resource.
@@ -68,6 +83,7 @@ class FavoritoController extends Controller
      */
     public function destroy(Favorito $favorito)
     {
-        //
+        $favorito->delete();
+        return redirect()->back()->with('success', 'Pokemon eliminado de favoritos exitosamente');
     }
 }

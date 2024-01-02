@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('pokemons', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->string('nombre')->unique();
             $table->string('tipo');
             $table->enum('favorito', ['SI', 'NO'])->nullable();
             $table->timestamps();

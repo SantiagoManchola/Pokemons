@@ -6,6 +6,8 @@ use App\Models\Pokemon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
+
 
 
 class PokemonsController extends Controller
@@ -32,13 +34,23 @@ class PokemonsController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
-            'nombre'=> 'required',
-            'tipo'=> 'required',
-        ]);
-
-        Pokemon::create($request->all());
-        return redirect()->route('pokemons.index')->with('success', 'Pokemon agregado exitosamente');
+        try
+        {
+            $request->validate([
+                'nombre'=> 'required',
+                'tipo'=> 'required',
+            ]);
+    
+            Pokemon::create($request->all());
+            return redirect()->route('pokemons.index')->with('success', 'Pokemon agregado exitosamente');
+        }
+        catch (QueryException $e)
+        {
+            if ($e->errorInfo[1] == 1062) 
+            {
+                return redirect()->back()->withInput()->withErrors(['nombre' => 'El valor del campo nombre ya existe.']);
+            }
+        }
     }
 
     /**
