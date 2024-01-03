@@ -34,7 +34,7 @@ class FavoritoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Pokemon $pokemon, Request $request)
     {
             $favorito = Favorito::where('email', $request->email)
             ->where('id_pokemon', $request->id_pokemon)
@@ -44,7 +44,9 @@ class FavoritoController extends Controller
                 $favorito = new Favorito();
                 $favorito->id_pokemon = $request->id_pokemon;
                 $favorito->email = $request->email;
+                /* $pokemon->update($request->favorito); */
                 $favorito->save();
+
                 return redirect() -> route('favoritos.index')->with('success', 'Agregado exitosamente');
             }
             else
@@ -81,9 +83,20 @@ class FavoritoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Favorito $favorito)
-    {
-        $favorito->delete();
-        return redirect()->back()->with('success', 'Pokemon eliminado de favoritos exitosamente');
+    public function destroy(Pokemon $pokemon, Favorito $favorito)
+    {   
+        $pokemon->delete();
+        return redirect()->back()->with('success', 'Pokemon eliminado exitosamente');
+        /* if (($favorito = Favorito::where('email', $pokemone->email)
+            ->where('id_pokemon', $pokemone->id_pokemon)) != null)
+        {
+            $favorito->delete();
+            return redirect()->back()->with('success', 'Pokemon eliminado de favoritos exitosamente');
+        }
+        else
+        {
+            
+            return redirect()->back()->with('success', 'Error');
+        } */
     }
 }

@@ -34,5 +34,6 @@ Route::post('/validar-registro', [LoginController::class, 'register'])->name('va
 Route::post('/inicia-sesion', [LoginController::class, 'login'])->name('inicia-sesion');
 Route::get('/logout', [LoginController::class, 'logout']) ->name('logout');
 
-Route::post('/eliminar-favorito', [FavoritoController::class, 'destroy'])->name('pokemones.destroy');
+/* Route::post('/eliminar-favorito', [FavoritoController::class, 'destroy'])->name('pokemones.destroy'); */
 Route::post('/pokemones-store', [FavoritoController::class, 'store'])->name('pokemones.store');
+Route::resource('pokemones', FavoritoController::class)->middleware('auth');

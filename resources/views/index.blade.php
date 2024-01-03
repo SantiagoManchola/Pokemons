@@ -36,7 +36,14 @@
                         {{$pokemon->tipo}}
                     </td>
                     <td>
-                        <span class="badge bg-warning fs-6">{{$pokemon->favorito}}</span>
+                        <span class="badge bg-warning fs-6">
+                            
+                            @if ($pokemon->favorito == 'SI')
+                                <p>Si fav</p>
+                            @else
+                                <p>No fav</p>
+                            @endif
+                        </span>
                     </td>
                     <td>
                         <form action="{{route('pokemons.edit', $pokemon)}}" method="GET">
