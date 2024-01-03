@@ -32,7 +32,7 @@
                         {{$pokemone->nombre}}
                     </td>
                     <td>
-                        {{$pokemone->tipo}}
+                        {{$pokemone->favorito}}
                     </td>
 
                     </form>

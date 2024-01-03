@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Favorito;
 use Illuminate\Http\Request;
 use App\Models\Pokemon;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\QueryException;
-
+use Symfony\Component\HttpKernel\Event\ResponseEvent;
 
 class FavoritoController extends Controller
 {
@@ -36,7 +37,7 @@ class FavoritoController extends Controller
      */
     public function store(Pokemon $pokemon, Request $request)
     {
-            $favorito = Favorito::where('email', $request->email)
+        $favorito = Favorito::where('email', $request->email)
             ->where('id_pokemon', $request->id_pokemon)
             ->first();
             if($favorito == null)
@@ -44,9 +45,7 @@ class FavoritoController extends Controller
                 $favorito = new Favorito();
                 $favorito->id_pokemon = $request->id_pokemon;
                 $favorito->email = $request->email;
-                /* $pokemon->update($request->favorito); */
                 $favorito->save();
-
                 return redirect() -> route('favoritos.index')->with('success', 'Agregado exitosamente');
             }
             else
@@ -54,6 +53,7 @@ class FavoritoController extends Controller
                 return redirect()->route('pokemons.index')->with('success', 'Ya se encuenta agregado en la lista de favoritos');
             }
     }
+
         
 
     /**
@@ -61,7 +61,7 @@ class FavoritoController extends Controller
      */
     public function show(Favorito $favorito)
     {
-        //
+        
     }
 
     /**
@@ -83,20 +83,15 @@ class FavoritoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Pokemon $pokemon, Favorito $favorito)
+    public function destroy(Pokemon $pokemone, Favorito $favorito)
     {   
-        $pokemon->delete();
-        return redirect()->back()->with('success', 'Pokemon eliminado exitosamente');
-        /* if (($favorito = Favorito::where('email', $pokemone->email)
-            ->where('id_pokemon', $pokemone->id_pokemon)) != null)
+        $email = Auth::user()->email;
+        $favorito = Favorito::where('id_pokemon', $pokemone->id)
+        ->where('email', $email)->first();
+        if($favorito)
         {
             $favorito->delete();
-            return redirect()->back()->with('success', 'Pokemon eliminado de favoritos exitosamente');
+            return redirect()->back()->with('success', 'Pokemon eliminado exitosamente');
         }
-        else
-        {
-            
-            return redirect()->back()->with('success', 'Error');
-        } */
     }
 }

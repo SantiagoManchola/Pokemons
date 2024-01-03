@@ -37,12 +37,7 @@
                     </td>
                     <td>
                         <span class="badge bg-warning fs-6">
-                            
-                            @if ($pokemon->favorito == 'SI')
-                                <p>Si fav</p>
-                            @else
-                                <p>No fav</p>
-                            @endif
+                            {{-- @extends('layouts.fav') --}}
                         </span>
                     </td>
                     <td>
@@ -61,6 +56,7 @@
                             @csrf
                             <input type="text" name="id_pokemon" value="{{$pokemon->id}}" hidden>
                             <input type="text" name="email" value="{{Auth::user()->email}}" hidden>
+                            <input type="text" name="favorito" value="{{$pokemon->favorito}}" hidden>
                             <button type="submit" class="btn btn-warning">Agregar a Favoritos</button>
                         </form>
                     </td>
